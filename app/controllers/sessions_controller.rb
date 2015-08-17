@@ -11,7 +11,7 @@ class SessionsController < ApplicationController
   	@user = User.find_by(username: params[:username]).try(:authenticate, params[:password]) 
   	if @user
   		session[:user_id] = @user.id 
-  		redirect_to root_path, notice: "You are now logged in as #{@user.username}!"
+  		redirect_to user_path(@user), notice: "You are now logged in as #{@user.username}!"
   	else
 		  redirect_to '/login'
   	end

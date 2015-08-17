@@ -1,4 +1,5 @@
 <% @users.each do |user| %>
-	<%= user.username %>
+	<%= link_to "#{user.username}'s Ratings", user_ratings_path(user) %>
+
 	<br/>
 <%end%>

@@ -1,1 +1,16 @@
-show.html.erb
+<h1>User: <%= @user.username %></h1>
+<hr>
+<ul id="user-show">
+	<h3><%= @user.email %></h3>
+
+	<div id="user-links">
+		<br/>
+		<%= link_to "Update Your Information", edit_user_path(@user) %>
+		<br/>
+		<%= link_to "Your Ratings", user_ratings_path(@user) %>
+		<%= link_to "Other Users", root_path %>
+
+
+	</div>
+<br>
+</ul>

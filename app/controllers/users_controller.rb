@@ -12,16 +12,31 @@ class UsersController < ApplicationController
   def create
     @user = User.new(user_params) 
     if @user.save
-      if session[:user_id] = nil #why is this not working
         session[:user_id] = @user.id
-        redirect_to root_path, notice: "Created user"
-      else
-        redirect_to root_path, notice: "Created user"
-      end
+        redirect_to user_path(@user), notice: "Created user"
     else
       render action: 'new', notice: "Failed to create user"
     end
   end
+
+  def edit
+    @user = User.find(params[:id])
+  end
+
+  def update
+    @user = User.find(params[:id])
+    @user.update(user_params)
+    if @user.save
+      redirect_to user_path(@user), notice: "#{@user.username.capitalize}'s info was successfully updated."
+    else
+      render action: "edit"
+    end
+  end
+
+  def show
+    @user = User.find(params[:id])
+  end
+
   
   private 
 
