@@ -16,5 +16,6 @@
 </table>
 
 <br>
-
+<% if current_user.id.to_s == (params[:user_id].to_s) %>
 <%= link_to 'New Rating', new_user_rating_path(@user) %>
+<%end%>
