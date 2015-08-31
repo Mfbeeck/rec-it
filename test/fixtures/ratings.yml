@@ -2,12 +2,12 @@
 
 one:
   name: MyString
-  score: 1.5
+  rating: 1.5
   description: MyText
   user_id: 
 
 two:
   name: MyString
-  score: 1.5
+  rating: 1.5
   description: MyText
   user_id: 

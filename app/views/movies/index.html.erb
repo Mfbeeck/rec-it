@@ -1,0 +1,24 @@
+<p id="notice"><%= notice %></p>
+
+<h1>Listing Movies for <%=@user.username%></h1>
+
+    <% @movies.each do |movie| %>
+      <tr>
+        <hr>
+        <td>Movie: <%= link_to movie.name, user_movie_path(@user, movie) %></td>
+        <br/>
+        <td>Rating = <%=movie.rating%></td>
+        <br/>
+        <td><%= link_to 'Edit', edit_user_movie_path(current_user, movie) %></td>
+        <td><%= link_to 'Destroy', user_movie_path(@user, movie), method: :delete, data: { confirm: 'Are you sure?' } %></td>
+        <hr>
+      </tr>
+    <% end %>
+  </tbody>
+</table>
+<%= link_to 'Back', user_path(@user) %>
+
+<br>
+<% if current_user.id.to_s == (params[:user_id].to_s) %>
+  <%= link_to 'New Movie', new_user_movie_path(@user) %>
+<%end%>

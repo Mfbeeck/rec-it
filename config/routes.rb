@@ -2,7 +2,7 @@ Rails.application.routes.draw do
   root 'users#index'
 
   resources :users do
-    resources :ratings
+    resources :movies
   end
 
   resources :sessions, only: [ :new, :create, :destroy ]

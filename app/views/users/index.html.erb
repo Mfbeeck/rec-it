@@ -1,5 +1,9 @@
 <% @users.each do |user| %>
-	<%= link_to "#{user.username}'s Ratings", user_ratings_path(user) %>
+	<%= link_to "#{user.username}'s Movies", user_movies_path(user) %>
 
 	<br/>
 <%end%>
+<br/>
+<% if current_user %>
+	<%= link_to "Your Collection!", user_path(current_user) %>
+<% end %>

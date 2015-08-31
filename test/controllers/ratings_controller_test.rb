@@ -1,14 +1,14 @@
 require 'test_helper'
 
-class RatingsControllerTest < ActionController::TestCase
+class MoviesControllerTest < ActionController::TestCase
   setup do
-    @rating = ratings(:one)
+    @movie = movies(:one)
   end
 
   test "should get index" do
     get :index
     assert_response :success
-    assert_not_nil assigns(:ratings)
+    assert_not_nil assigns(:movies)
   end
 
   test "should get new" do
@@ -16,34 +16,34 @@ class RatingsControllerTest < ActionController::TestCase
     assert_response :success
   end
 
-  test "should create rating" do
-    assert_difference('Rating.count') do
-      post :create, rating: { description: @rating.description, name: @rating.name, score: @rating.score, user_id: @rating.user_id }
+  test "should create movie" do
+    assert_difference('Movie.count') do
+      post :create, movie: { description: @movie.description, name: @movie.name, rating: @movie.rating, user_id: @movie.user_id }
     end
 
-    assert_redirected_to rating_path(assigns(:rating))
+    assert_redirected_to movie_path(assigns(:movie))
   end
 
-  test "should show rating" do
-    get :show, id: @rating
+  test "should show movie" do
+    get :show, id: @movie
     assert_response :success
   end
 
   test "should get edit" do
-    get :edit, id: @rating
+    get :edit, id: @movie
     assert_response :success
   end
 
-  test "should update rating" do
-    patch :update, id: @rating, rating: { description: @rating.description, name: @rating.name, score: @rating.score, user_id: @rating.user_id }
-    assert_redirected_to rating_path(assigns(:rating))
+  test "should update movie" do
+    patch :update, id: @movie, movie: { description: @movie.description, name: @movie.name, rating: @movie.rating, user_id: @movie.user_id }
+    assert_redirected_to movie_path(assigns(:movie))
   end
 
-  test "should destroy rating" do
-    assert_difference('Rating.count', -1) do
-      delete :destroy, id: @rating
+  test "should destroy movie" do
+    assert_difference('movie.count', -1) do
+      delete :destroy, id: @movie
     end
 
-    assert_redirected_to ratings_path
+    assert_redirected_to movies_path
   end
 end
