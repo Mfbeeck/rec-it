@@ -1,16 +1,18 @@
 <p id="notice"><%= notice %></p>
-
+<% if current_user.id == params[:user_id].to_i%>
+<h1>My Movies</h1>
+<%else%>
 <h1>Listing Movies for <%=@user.username%></h1>
-
-    <% @movies.each do |movie| %>
+<%end%>
+    <% @movie_ratings.each do |movie_rating| %>
       <tr>
         <hr>
-        <td>Movie: <%= link_to movie.name, user_movie_path(@user, movie) %></td>
+        <td>Movie: <%= link_to movie_rating.movie.name, user_movie_path(@user, movie_rating.movie) %></td>
         <br/>
-        <td>Rating = <%=movie.rating%></td>
+        <td>Rating = <%=movie_rating.rating%></td>
         <br/>
-        <td><%= link_to 'Edit', edit_user_movie_path(current_user, movie) %></td>
-        <td><%= link_to 'Destroy', user_movie_path(@user, movie), method: :delete, data: { confirm: 'Are you sure?' } %></td>
+        <td><%= link_to 'Edit', edit_user_movie_path(current_user, movie_rating.movie) %></td>
+        <td><%= link_to 'Destroy', user_movie_path(@user, movie_rating.movie), method: :delete, data: { confirm: 'Are you sure?' } %></td>
         <hr>
       </tr>
     <% end %>

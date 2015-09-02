@@ -11,10 +11,21 @@
 #
 # It's strongly recommended that you check this file into your version control system.
 
-ActiveRecord::Schema.define(version: 20150818192851) do
+ActiveRecord::Schema.define(version: 20150902150728) do
 
   # These are extensions that must be enabled in order to support this database
   enable_extension "plpgsql"
+
+  create_table "mov_ratings", force: :cascade do |t|
+    t.float    "rating"
+    t.integer  "user_id"
+    t.integer  "movie_id"
+    t.datetime "created_at", null: false
+    t.datetime "updated_at", null: false
+  end
+
+  add_index "mov_ratings", ["movie_id"], name: "index_mov_ratings_on_movie_id", using: :btree
+  add_index "mov_ratings", ["user_id"], name: "index_mov_ratings_on_user_id", using: :btree
 
   create_table "movies", force: :cascade do |t|
     t.string   "name"
@@ -40,5 +51,7 @@ ActiveRecord::Schema.define(version: 20150818192851) do
 
   add_index "users", ["username"], name: "index_users_on_username", unique: true, using: :btree
 
+  add_foreign_key "mov_ratings", "movies"
+  add_foreign_key "mov_ratings", "users"
   add_foreign_key "movies", "users"
 end
